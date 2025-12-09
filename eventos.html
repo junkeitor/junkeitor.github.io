@@ -258,15 +258,29 @@
             object-fit: cover;
         }
 
-        .event-date {
-            background: white;
-            padding: 12px;
+        .event-info {
+            display: flex;
+            flex-direction: column;
             text-align: center;
-            font-size: 14px;
+            padding: 10px 12px;
+            background: white;
+            height: 80px; 
+        }
+        .event-title {
+            font-size: 16px;
             font-weight: bold;
             color: #333;
-            border-top: 2px solid #f0f0f0;
+            margin-bottom: 4px;
         }
+
+        .event-date {
+            border-top: none;
+            font-size: 14px;
+            font-weight: normal;
+            color: #555;
+            margin-top: auto; 
+        }
+
 
         .active-filter {
             display: flex;
@@ -333,43 +347,68 @@
 
     <div class="event-card" data-title="Five Nights at Freddy's 2" data-date="2025-12-22" data-time="15:30">
         <img src="peli_five_nights_at_freddy's_2.png" alt="Five Nights at Freddy's 2" class="event-image">
-        <div class="event-date">22 diciembre, 15:30</div>
+        <div class="event-info">
+            <div class="event-title">Five Nights at Freddy's 2</div>
+            <div class="event-date">22 diciembre, 15:30</div>
+        </div>
     </div>
 
     <div class="event-card" data-title="Jujutsu Kaisen: Ejecución" data-date="2025-12-29" data-time="17:30">
-        <img src="peli_jujutsu_kaisen_execution.png" alt="Jujutsu Kaisen: Ejecución" class="event-image">
+    <img src="peli_jujutsu_kaisen_execution.png" alt="Jujutsu Kaisen: Ejecución" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Jujutsu Kaisen: Ejecución</div>
         <div class="event-date">29 diciembre, 17:30</div>
     </div>
+</div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
-        <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+<div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
+    <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Núremberg</div>
         <div class="event-date">3 enero, 21:30</div>
     </div>
-    
-    <div class="event-card" data-title="Zootopia 2" data-date="2026-01-13" data-time="20:30">
-        <img src="peli_zootopia.png" alt="Zootopia 2" class="event-image">
+</div>
+
+<div class="event-card" data-title="Zootopia 2" data-date="2026-01-13" data-time="20:30">
+    <img src="peli_zootopia.png" alt="Zootopia 2" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Zootopia 2</div>
         <div class="event-date">13 enero, 20:30</div>
     </div>
+</div>
 
-    <div class="event-card" data-title="Wicked: For Good" data-date="2026-02-22" data-time="19:30">
-        <img src="peli_wicked_for_good.png" alt="Wicked: For Good" class="event-image">
+<div class="event-card" data-title="Wicked: For Good" data-date="2026-02-22" data-time="19:30">
+    <img src="peli_wicked_for_good.png" alt="Wicked: For Good" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Wicked: For Good</div>
         <div class="event-date">22 febrero, 19:30</div>
     </div>
+</div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
-        <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+<div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
+    <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Núremberg</div>
         <div class="event-date">3 enero, 21:30</div>
     </div>
+</div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
-        <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+<div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
+    <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Núremberg</div>
         <div class="event-date">3 enero, 21:30</div>
     </div>
+</div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2026s-01-03" data-time="21:30">
-        <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+<div class="event-card" data-title="Núremberg" data-date="2026s-01-03" data-time="21:30">
+    <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
+    <div class="event-info">
+        <div class="event-title">Núremberg</div>
         <div class="event-date">3 enero, 21:30</div>
     </div>
+</div>
+
 </div>
 
         </div>
