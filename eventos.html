@@ -34,7 +34,7 @@
             background-size: contain; 
             position: absolute;     /* se coloca encima */
             top: 40px;
-            right:1413px;
+            right:1400px;
             z-index: 2;
         }
 
@@ -63,7 +63,7 @@
             background-color: #00a651;
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 34px ;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
@@ -245,6 +245,7 @@
         .event-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
         }
 
         .event-image {
@@ -311,7 +312,7 @@
     <div class="container">
         <div class="search-section">
             <button class="btn-filter" onclick="openModal()">Filtrar por fecha</button>
-            <input type="text" class="search-box" placeholder="🔍 Buscar por título" id="searchInput" onkeyup="filterByTitle()">
+            <input type="text" class="search-box" placeholder="Buscar por título" id="searchInput" onkeyup="filterByTitle()">
             <div id="activeFilter" class="active-filter" style="display: none;">
                 <span id="filterText"></span>
                 <button class="btn-clear" onclick="clearDateFilter()">✕ Limpiar</button>
@@ -330,32 +331,32 @@
         <div class="event-date">29 diciembre, 17:30</div>
     </div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2025-01-03" data-time="21:30">
+    <div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
         <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
         <div class="event-date">3 enero, 21:30</div>
     </div>
     
-    <div class="event-card" data-title="Zootopia 2" data-date="2025-01-13" data-time="20:30">
+    <div class="event-card" data-title="Zootopia 2" data-date="2026-01-13" data-time="20:30">
         <img src="peli_zootopia.png" alt="Zootopia 2" class="event-image">
         <div class="event-date">13 enero, 20:30</div>
     </div>
 
-    <div class="event-card" data-title="Wicked: For Good" data-date="2025-02-22" data-time="19:30">
+    <div class="event-card" data-title="Wicked: For Good" data-date="2026-02-22" data-time="19:30">
         <img src="peli_wicked_for_good.png" alt="Wicked: For Good" class="event-image">
         <div class="event-date">22 febrero, 19:30</div>
     </div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2025-01-03" data-time="21:30">
+    <div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
         <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
         <div class="event-date">3 enero, 21:30</div>
     </div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2025-01-03" data-time="21:30">
+    <div class="event-card" data-title="Núremberg" data-date="2026-01-03" data-time="21:30">
         <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
         <div class="event-date">3 enero, 21:30</div>
     </div>
 
-    <div class="event-card" data-title="Núremberg" data-date="2025-01-03" data-time="21:30">
+    <div class="event-card" data-title="Núremberg" data-date="2026s-01-03" data-time="21:30">
         <img src="peli_núremberg.png" alt="Núremberg" class="event-image">
         <div class="event-date">3 enero, 21:30</div>
     </div>
@@ -389,162 +390,129 @@
     </div>
 
     <script>
-        let dateFilterActive = false;
-        let startDateFilter = null;
-        let endDateFilter = null;
+    let dateFilterActive = false;
+    let startDateFilter = null;
+    let endDateFilter = null;
 
-        function openModal() {
-            document.getElementById('dateModal').style.display = 'block';
+    function openModal() {
+        document.getElementById('dateModal').style.display = 'block';
 
-            // Fecha de hoy
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedToday = `${year}-${month}-${day}`;
 
-            // Formato YYYY-MM-DD
-            const formattedToday = `${year}-${month}-${day}`;
+        const future = new Date(today);
+        future.setMonth(future.getMonth() + 2);
+        const futureYear = future.getFullYear();
+        const futureMonth = String(future.getMonth() + 1).padStart(2, '0');
+        const futureDay = String(future.getDate()).padStart(2, '0');
+        const formattedFuture = `${futureYear}-${futureMonth}-${futureDay}`;
 
-            // Fecha + 3 meses
-            const future = new Date(today);
-            future.setMonth(future.getMonth() + 3);
+        document.getElementById('startDate').value = formattedToday;
+        document.getElementById('endDate').value = formattedFuture;
+    }
 
-            const futureYear = future.getFullYear();
-            const futureMonth = String(future.getMonth() + 1).padStart(2, '0');
-            const futureDay = String(future.getDate()).padStart(2, '0');
+    function closeModal() {
+        document.getElementById('dateModal').style.display = 'none';
+    }
 
-            const formattedFuture = `${futureYear}-${futureMonth}-${futureDay}`;
+    window.onclick = function(event) {
+        const modal = document.getElementById('dateModal');
+        if (event.target == modal) closeModal();
+    }
 
-            // Colocar valores en el modal
-            document.getElementById('startDate').value = formattedToday;
-            document.getElementById('endDate').value = formattedFuture;
+    function applyDateFilter() {
+        const startDateInput = document.getElementById('startDate').value;
+        const endDateInput = document.getElementById('endDate').value;
+
+        if (!startDateInput || !endDateInput) {
+            alert('Por favor selecciona ambas fechas');
+            return;
         }
 
-        function closeModal() {
-            document.getElementById('dateModal').style.display = 'none';
+        const [sy, sm, sd] = startDateInput.split('-');
+        const [ey, em, ed] = endDateInput.split('-');
+        startDateFilter = new Date(sy, sm - 1, sd);
+        endDateFilter = new Date(ey, em - 1, ed);
+
+        if (startDateFilter > endDateFilter) {
+            alert('La fecha de inicio debe ser anterior a la fecha de fin');
+            return;
         }
 
-        // Cerrar modal al hacer clic fuera de él
-        window.onclick = function(event) {
-            const modal = document.getElementById('dateModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
+        dateFilterActive = true;
 
-        function applyDateFilter() {
-            const startDateInput = document.getElementById('startDate').value;
-            const endDateInput = document.getElementById('endDate').value;
-            
-            if (!startDateInput || !endDateInput) {
-                alert('Por favor selecciona ambas fechas');
-                return;
-            }
-            
-            // Crear objetos Date sin conversión de zona horaria
-            const [startYear, startMonth, startDay] = startDateInput.split('-');
-            const [endYear, endMonth, endDay] = endDateInput.split('-');
-            
-            const startDate = new Date(startYear, startMonth - 1, startDay);
-            const endDate = new Date(endYear, endMonth - 1, endDay);
-            
-            if (startDate > endDate) {
-                alert('La fecha de inicio debe ser anterior a la fecha de fin');
-                return;
-            }
-            
-            // Guardar el filtro de fechas
-            dateFilterActive = true;
-            startDateFilter = startDate;
-            endDateFilter = endDate;
-            
-            const cards = document.getElementsByClassName('event-card');
-            let visibleCount = 0;
-            
-            console.log('Rango de filtro:', startDate, 'hasta', endDate);
-            
-            Array.from(cards).forEach(card => {
-                const eventDateStr = card.dataset.date;
-                const [year, month, day] = eventDateStr.split('-');
-                const eventDate = new Date(year, month - 1, day);
-                
-                console.log('Evento:', card.dataset.title, 'Fecha:', eventDate);
-                
-                // Verificar si está dentro del rango
-                if (eventDate >= startDate && eventDate <= endDate) {
-                    card.style.display = '';
-                    visibleCount++;
-                    console.log('✓ Mostrar evento:', card.dataset.title);
-                } else {
-                    card.style.display = 'none';
-                    console.log('✗ Ocultar evento:', card.dataset.title);
-                }
-            });
-            
-            // Mostrar indicador de filtro activo
-            const filterText = document.getElementById('filterText');
-            const activeFilter = document.getElementById('activeFilter');
-            
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const startStr = startDate.toLocaleDateString('es-ES', options);
-            const endStr = endDate.toLocaleDateString('es-ES', options);
-            
-            filterText.textContent = `Mostrando ${visibleCount} eventos desde ${startStr} hasta ${endStr}`;
-            activeFilter.style.display = 'flex';
-            
-            closeModal();
-            
-            // Reaplicar filtro de título si existe
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput.value) {
-                filterByTitle();
-            }
-        }
+        const cards = document.getElementsByClassName('event-card');
+        let visibleCount = 0;
 
-        function clearDateFilter() {
-            dateFilterActive = false;
-            startDateFilter = null;
-            endDateFilter = null;
-            
-            const cards = document.getElementsByClassName('event-card');
-            Array.from(cards).forEach(card => {
+        Array.from(cards).forEach(card => {
+            const [ey, em, ed] = card.dataset.date.split('-');
+            const eventDate = new Date(ey, em - 1, ed);
+
+            if (eventDate.getTime() >= startDateFilter.getTime() &&
+                eventDate.getTime() <= endDateFilter.getTime()) {
                 card.style.display = '';
-            });
-            
-            document.getElementById('activeFilter').style.display = 'none';
-            
-            // Reaplicar filtro de título si existe
-            filterByTitle();
-        }
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
 
-        function filterByTitle() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const cards = document.getElementsByClassName('event-card');
-            
-            Array.from(cards).forEach(card => {
-                const title = card.dataset.title.toLowerCase();
-                const eventDateStr = card.dataset.date;
-                const [year, month, day] = eventDateStr.split('-');
-                const eventDate = new Date(year, month - 1, day);
-                
-                // Verificar filtro de título
-                const matchesTitle = title.includes(filter);
-                
-                // Verificar filtro de fecha (si está activo)
-                let matchesDate = true;
-                if (dateFilterActive && startDateFilter && endDateFilter) {
-                    matchesDate = eventDate >= startDateFilter && eventDate <= endDateFilter;
-                }
-                
-                // Mostrar solo si cumple ambos filtros
-                if (matchesTitle && matchesDate) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
+        const filterText = document.getElementById('filterText');
+        const activeFilter = document.getElementById('activeFilter');
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        filterText.textContent = `Mostrando ${visibleCount} eventos desde ${startDateFilter.toLocaleDateString('es-ES', options)} hasta ${endDateFilter.toLocaleDateString('es-ES', options)}`;
+        activeFilter.style.display = 'flex';
+
+        closeModal();
+
+        // Reaplicar filtro de título si existe
+        filterByTitle();
+    }
+
+    function clearDateFilter() {
+        dateFilterActive = false;
+        startDateFilter = null;
+        endDateFilter = null;
+
+        const cards = document.getElementsByClassName('event-card');
+        Array.from(cards).forEach(card => card.style.display = '');
+        document.getElementById('activeFilter').style.display = 'none';
+
+        filterByTitle();
+    }
+
+    function filterByTitle() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.getElementsByClassName('event-card');
+
+        Array.from(cards).forEach(card => {
+            const title = card.dataset.title.toLowerCase();
+            const [ey, em, ed] = card.dataset.date.split('-');
+            const eventDate = new Date(ey, em - 1, ed);
+
+            const matchesTitle = title.includes(input);
+            let matchesDate = true;
+
+            if (dateFilterActive) {
+                matchesDate = eventDate.getTime() >= startDateFilter.getTime() &&
+                              eventDate.getTime() <= endDateFilter.getTime();
+            }
+
+            card.style.display = (matchesTitle && matchesDate) ? '' : 'none';
+        });
+    }
+
+    // Abrir evento al hacer clic
+    document.querySelectorAll('.event-card').forEach(card => {
+        card.addEventListener('click', () => {
+            window.open('index.html', '_blank');
+        });
+    });
+</script>
+
 </body>
+
 </html>
